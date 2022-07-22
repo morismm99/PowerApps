@@ -40,61 +40,61 @@ SPO lists custom columns needed:
 
 M365 Incidents
 
-Title (Single line of text)
-Service (Single line of text)
-Status (Single line of text)
-UserImpact (Multiple lines of text)
-Alert (Single line of text)
-Class (Single line of text)
-IncID (Single line of text)
-Updated (Date and Time)
-StartTime (Date and Time)
-EndTime (Date and Time)
-Twitter (Single line of text)
-IsResolved (Single line of text)
-HighImpact (Single line of text)
-Origin (Single line of text)
-Feature (Single line of text)
-FeatureGroup (Single line of text)
+1. Title (Single line of text)
+2. Service (Single line of text)
+3. Status (Single line of text)
+4. UserImpact (Multiple lines of text)
+5. Alert (Single line of text)
+6. Class (Single line of text)
+7. IncID (Single line of text)
+8. Updated (Date and Time)
+9. StartTime (Date and Time)
+10. EndTime (Date and Time)
+11. Twitter (Single line of text)
+12. IsResolved (Single line of text)
+13. HighImpact (Single line of text)
+14. Origin (Single line of text)
+15. Feature (Single line of text)
+16. FeatureGroup (Single line of text)
 
 M365 Message Center
 
-Title (Single line of text)
-Link (Single line of text)
-MessageCenterID (Single line of text)
-Description (Multiple lines of text - –enable enhanced rich text)
-SolutionAffected (Single line of text)
-ActbyDate (Date and Time)
-Category (Single line of text)
-ActionType (Choice)
-Status (Choice)
-Severity (Single line of text)
-CreatedDate (Date and Time)
-ModifiedDate (Date and Time)
-EndDate (Date and Time)
-Assignee (Person or Group)
-InternalNotes (Multiple Lines of text)
+1. Title (Single line of text)
+2. Link (Single line of text)
+3. MessageCenterID (Single line of text)
+4. Description (Multiple lines of text - –enable enhanced rich text)
+5. SolutionAffected (Single line of text)
+6. ActbyDate (Date and Time)
+7. Category (Single line of text)
+8. ActionType (Choice)
+9. Status (Choice)
+10. Severity (Single line of text)
+11. CreatedDate (Date and Time)
+12. ModifiedDate (Date and Time)
+13. EndDate (Date and Time)
+14. Assignee (Person or Group)
+15. InternalNotes (Multiple Lines of text)
 
 M365 RoadMap:
 
-Title (Single line of text)
-RoadMapID (Single line of text)
-Link (Single line of text)
-Description (Multiple lines of text)
-Status (Single line of text)
-MoreInfoLink (Single line of text)
-PublicRoadMapStatus (Single line of text)
-Tags (Multiple lines of text))
-CreatedDate (Date and Time)
-ModifiedDate (Date and Time)
-PublicDisclosureAvailabilityDate (Date and Time)
+1. Title (Single line of text)
+2. RoadMapID (Single line of text)
+3. Link (Single line of text)
+4. Description (Multiple lines of text)
+5. Status (Single line of text)
+6. MoreInfoLink (Single line of text)
+7. PublicRoadMapStatus (Single line of text)
+8. Tags (Multiple lines of text))
+9. CreatedDate (Date and Time)
+10. ModifiedDate (Date and Time)
+11. PublicDisclosureAvailabilityDate (Date and Time)
 
 Power Automate Flows
 
 Three core SPO flows are needed
-SHD Graph API – Incidents
-SHD Graph API – Message Center
-Query MS Roadmap
+1. SHD Graph API – Incidents
+2. SHD Graph API – Message Center
+3. Query MS Roadmap
 
 These flows use the HTTP Action to query API endpoints
 The Incidents and Message Center flows query the GRAPH API using the app registration
@@ -108,67 +108,67 @@ Any other additional notification flow or flows that can be triggered via a butt
 
 SHD Graph API – Incidents flow breakdown
 
-Step 1: Recurrence trigger – can be set to run every hour for example
-Step 2: The HTTP Action does a GET to the following URI:
-https://graph.microsoft.com/v1.0/admin/serviceAnnouncement/issues
+1. Step 1: Recurrence trigger – can be set to run every hour for example
+2. Step 2: The HTTP Action does a GET to the following URI: https://graph.microsoft.com/v1.0/admin/serviceAnnouncement/issues
 Headers: Content-type application/json
 Authentication: Active Directory Oauth
 Using App registration Client ID and credential type Secret
 Settings need to be edited and pagination turned on and threshold set to 1000
- Step 3: A Parse JSON action needs to added
+3. Step 3: A Parse JSON action needs to added
 Generate schema from HTTP action output
-Step 4: Apply to each scoped to Value of the Parse JSON
+4. Step 4: Apply to each scoped to Value of the Parse JSON
 Inside of the apply to each, a Get Items SPO action is needed
 Filter using an ODATA query to look for new incidents via ID
-Step 5: Add a condition that checks whether the item exists or not
+5. Step 5: Add a condition that checks whether the item exists or not
 If these don’t exist a new entry will be created using the Create Item SPO action
 If it exists, the entry will be updated IF the updated dates don’t match, using the Update Item SPO action. A condition will need to be added do check if dates match
 
 SHD Graph API – Message Center flow breakdown
 
-Step 1: Recurrence trigger – can be set to run once a day
-Step 2: The HTTP Action does a GET to the following URI:
-https://graph.microsoft.com/v1.0/admin/serviceAnnouncement/messages
+1. Step 1: Recurrence trigger – can be set to run once a day
+2. Step 2: The HTTP Action does a GET to the following URI: https://graph.microsoft.com/v1.0/admin/serviceAnnouncement/messages
 Headers: Content-type application/json
 Authentication: Active Directory Oauth
 Using App registration Client ID and credential type Secret
 Settings need to be edited and pagination turned on and threshold set to 1000
- Step 3: A Parse JSON action needs to be added
+3. Step 3: A Parse JSON action needs to be added
 Generate schema from HTTP action output
-Step 4: Apply to each scoped to Value of the Parse JSON
+4. Step 4: Apply to each scoped to Value of the Parse JSON
 Inside of the apply to each, a Get Items SPO action is needed
 Filter using an ODATA query to look for new messages via ID
-Step 5: Add two Compose actions to convert services dynamic value to a string, and then another compose to clean up the array.
-Step 6: Add a condition that checks whether the item exists or not
+5. Step 5: Add two Compose actions to convert services dynamic value to a string, and then another compose to clean up the array.
+6. Step 6: Add a condition that checks whether the item exists or not
 If these don’t exist a new entry will be created using the Create Item SPO action
 If it exists, the entry will be updated IF the updated dates don’t match, using the Update Item SPO action. A condition will need to be added do check if dates match
 
 Query MS Roadmap flow breakdown
 
-Step 1: Recurrence trigger – can be set to run once a week
-Step 2: The HTTP Action does a GET to the following URI:
-https://roadmap-api.azurewebsites.net/api/features
+1. Step 1: Recurrence trigger – can be set to run once a week
+2. Step 2: The HTTP Action does a GET to the following URI: https://roadmap-api.azurewebsites.net/api/features
 Headers: Content-type application/json
 Authentication: None
-Step 3: A Parse JSON action needs to added
+3. Step 3: A Parse JSON action needs to added
 Generate schema from HTTP action output
-Step 4: Apply to each scoped to Value of the Parse JSON
+4. Step 4: Apply to each scoped to Value of the Parse JSON
 Inside of the apply to each, a Get Items SPO action is needed
 Filter using an ODATA query to look for new messages via RoadMapID
-Step 5: Add two Compose actions to convert tags dynamic value to a string, and then another compose to clean up the array.
-Step 6: Add a condition that checks whether the item exists or not
+5. Step 5: Add two Compose actions to convert tags dynamic value to a string, and then another compose to clean up the array.
+6. Step 6: Add a condition that checks whether the item exists or not
 If these don’t exist a new entry will be created using the Create Item SPO action
 If it exists, the entry will be updated IF the updated dates don’t match, using the Update Item SPO action. A condition will need to be added do check if dates match
 
 Additional/Optional flows
 
 More flows can be created to enhance/improve the solution:
+
 Daily M365 Open Incidents Report
 Similar setup as the Incidents flow, but this one needs some filtering added to only look for open incidents (no end date).
 Then, create an HTML table of those and send it via an email to the M365 Admin Team or post to MS Teams channel.
+
 Search M365 Incidents in Twitter
 It is known that when there is a major incident, Microsoft will post about it in Twitter using the @MSFT365Status account
 This flow runs anytime an item is modified in the Incidents lists and searches for that incident ID on any posts made by the account above and updates the SPO list item is MS has tweeted about it.
+
 Any other additional notification flow or flows that can be triggered via a button in the Power App
 Good to Know flow (would allow Admin team to mark Message Center items as good to know)
 Message Center Item Assignee notification (would update the assignee anytime a Message Center item is updated/marked as complete)
@@ -184,8 +184,10 @@ This is just an example of what the canvas app can look like. You can create an 
 Tips/tricks and things to consider
 
 If using SPO as the data source for this app, depending on how you decide to filter the data in galleries, keep delegation in mind.
+
 For example, in my sample solution where I use SPO lists to store the data, I am currently using search in my formulas to filter my galleries. Search with SPO list does not support delegation. This means I have to keep my list under 2000 items, or I would need to find a different method to filter if I wanted to continue using Search, or only use functions that support delegation.
-In my experience, we continued using SPO lists, and I created “Archive” flows for the three main lists which can run on a schedule and delete closed/older/released items onto different archive lists which are not tied to the Power App
+
+If using SPO lists, create “Archive” flows for the three main lists which can run on a schedule and delete closed/older/released items onto different archive lists which are not tied to the Power App
 
 You can add the canvas app to MS Teams for easy access
 The app can continue to be expanded, adding additional functionality to have a one stop shop M365 management solution.
