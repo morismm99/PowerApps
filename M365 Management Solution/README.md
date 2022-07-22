@@ -6,28 +6,27 @@ By leveraging the Power Platform, we can create a one stop shop solution for the
 
 This solution uses the following:
 
-SharePoint Online lists to store SHD, Message Center and RoadMap data
-Power Automate flows run on a schedule to scrape the MS Graph and store data in the SPO lists
-Power Apps canvas app is created to easily view and interact with this data
-Power Bi reports can be created to analyze this data
-The app can be added as a tab in an MS Teams channel as a tab for quick access!
+1. SharePoint Online lists to store SHD, Message Center and RoadMap data
+2. Power Automate flows run on a schedule to scrape the MS Graph and store data in the SPO lists
+3. Power Apps canvas app is created to easily view and interact with this data
+4. Power Bi reports can be created to analyze this data
+5. The app can be added as a tab in an MS Teams channel as a tab for quick access!
 
 App Registration
 
-The first step is creating an Azure App Registration with the necessary permissions
-It will be used in two of the flows which use the HTTP Action to do a GET REST API call from the MS GRAPH API
+The first step is creating an Azure App Registration with the necessary permissions. It will be used in two of the flows which use the HTTP Action to do a GET REST API call from the MS GRAPH API
+
 You will need the following after your App Registration has been created:
-Application (client) ID
-Tenant ID
-App Secret value 
-Can be generated from the “Certificates & Secrets” in the App Registration options in AAD.
+1. Application (client) ID
+2. Tenant ID
+3. App Secret value - Can be generated from the “Certificates & Secrets” in the App Registration options in AAD.
 
 SharePoint Online Lists
 
 Three SPO lists are needed:
-M365 Incidents
-M365 Message Center
-M365 Roadmap
+1. M365 Incidents
+2. M365 Message Center
+3. M365 Roadmap
 
 These lists can be created on a public SPO site, and permissions can be set accordingly to reduce number of users who can read/write to these lists
 Every app user will need the ability to read these lists. 
@@ -96,15 +95,12 @@ Three core SPO flows are needed
 2. SHD Graph API – Message Center
 3. Query MS Roadmap
 
-These flows use the HTTP Action to query API endpoints
-The Incidents and Message Center flows query the GRAPH API using the app registration
-The MS Roadmap queries a public API, thus no authentication is needed
-All three use a recurrence (scheduled trigger)
+These flows use the HTTP Action to query API endpoints. The Incidents and Message Center flows query the GRAPH API using the app registration. The MS Roadmap queries a public API, thus no authentication is needed. All three use a recurrence (scheduled trigger).
 
 Optional flows
-Daily M365 Open Incidents Report
-Search M365 Incidents in Twitter
-Any other additional notification flow or flows that can be triggered via a button in the Power App
+1. Daily M365 Open Incidents Report
+2. Search M365 Incidents in Twitter
+3. Any other additional notification flow or flows that can be triggered via a button in the Power App
 
 SHD Graph API – Incidents flow breakdown
 
@@ -161,17 +157,14 @@ Additional/Optional flows
 
 More flows can be created to enhance/improve the solution:
 
-Daily M365 Open Incidents Report
-Similar setup as the Incidents flow, but this one needs some filtering added to only look for open incidents (no end date).
-Then, create an HTML table of those and send it via an email to the M365 Admin Team or post to MS Teams channel.
+1. Daily M365 Open Incidents Report
+Similar setup as the Incidents flow, but this one needs some filtering added to only look for open incidents (no end date). Then, create an HTML table of those and send it via an email to the M365 Admin Team or post to MS Teams channel.
 
-Search M365 Incidents in Twitter
-It is known that when there is a major incident, Microsoft will post about it in Twitter using the @MSFT365Status account
-This flow runs anytime an item is modified in the Incidents lists and searches for that incident ID on any posts made by the account above and updates the SPO list item is MS has tweeted about it.
+2. Search M365 Incidents in Twitter
+It is known that when there is a major incident, Microsoft will post about it in Twitter using the @MSFT365Status account. This flow runs anytime an item is modified in the Incidents lists and searches for that incident ID on any posts made by the account above and updates the SPO list item is MS has tweeted about it.
 
-Any other additional notification flow or flows that can be triggered via a button in the Power App
-Good to Know flow (would allow Admin team to mark Message Center items as good to know)
-Message Center Item Assignee notification (would update the assignee anytime a Message Center item is updated/marked as complete)
+3. Any other additional notification flow or flows that can be triggered via a button in the Power App
+Good to Know flow (would allow Admin team to mark Message Center items as good to know). Message Center Item Assignee notification (would update the assignee anytime a Message Center item is updated/marked as complete)
 
 Power BI Reports - Optional
 
