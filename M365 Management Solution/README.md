@@ -189,3 +189,25 @@ In my experience, we continued using SPO lists, and I created “Archive” flow
 
 You can add the canvas app to MS Teams for easy access
 The app can continue to be expanded, adding additional functionality to have a one stop shop M365 management solution.
+
+Importing the M365Managemeent_1_0_0_3.Zip unmanaged solution
+
+I’d recommend importing this “unmanaged” solution into a dev/test environment where you have the Maker Role, so you can successfully do the import.
+
+Make sure you have the three SPO lists created accordingly as the instructions above
+
+When the solution imports, you will need to set variables. Since this is an unmanaged solution, you will need to go to Solutions > Default Solution > Environment Variables > update each from there, setting values in the “Current value” field for each.
+
+Once you do that, you will be able to enable the flows in the solution, but I would recommend going into edit mode for each one of these so you can see how these are built/setup and make any desired changes. 
+
+Once the flows have been enabled, last step would be to go into edit mode for the canvas app (Microsoft 365 Administration Demo). While in edit mode, you will need to remove the existing SPO lists and add your site/lists. If you used the same names, every screen/gallery/formula will map correctly.
+
+1.	Click View tab
+2.	Data sources
+3.	Remove the three SPO lists > click three dots > remove
+4.	Add data source > choose your SharePoint connection
+5.	Search/find the SPO site where the lists reside in
+6.	Check all three lists
+7.	Make sure data load and do a save
+
+The app has several screens that are currently not being used, not built out yet. This is where you can make this app your own, remove screens, add new screens/functionality, change colors, sky is the limit. The Incidents/Advisories, Message Center and RoadMap screens are functional and already have various filters set as you will see.
