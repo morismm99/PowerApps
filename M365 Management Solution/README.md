@@ -86,7 +86,7 @@ M365 RoadMap:
 8. Tags (Multiple lines of text))
 9. CreatedDate (Date and Time)
 10. ModifiedDate (Date and Time)
-11. PublicDisclosureAvailabilityDate (Date and Time)
+11. PublicDisclosureAvailabilityDate (Single line of text)
 
 Power Automate Flows
 
