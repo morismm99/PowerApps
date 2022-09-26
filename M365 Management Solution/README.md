@@ -6,7 +6,7 @@ By leveraging the Power Platform, we can create a one stop shop solution for the
 
 This solution uses the following:
 
-1. SharePoint Online lists to store SHD, Message Center and RoadMap data
+1. SharePoint Online lists to store SHD, Message Center and RoadMap data (premium data sources like Dataverse or SQL could be used instead)
 2. Power Automate flows run on a schedule to scrape the MS Graph and store data in the SPO lists
 3. Power Apps canvas app is created to easily view and interact with this data
 4. Power Bi reports can be created to analyze this data
@@ -14,7 +14,7 @@ This solution uses the following:
 
 App Registration
 
-The first step is creating an Azure App Registration with the necessary permissions. It will be used in two of the flows which use the HTTP Action to do a GET REST API call from the MS GRAPH API
+The first step is creating an Azure App Registration with the necessary permissions. It will be used in two of the flows which use the HTTP Action to do a GET REST API call from the MS GRAPH API. Permissions required for the app registration are ServiceHealth.Read.All (Delegaged/Application) - this is for the Service Health Dashboard; ServiceMessage.Read.all (Delegated/Application) - this for the Message Center.
 
 You will need the following after your App Registration has been created:
 1. Application (client) ID
@@ -65,8 +65,8 @@ M365 Message Center
 5. SolutionAffected (Single line of text)
 6. ActbyDate (Date and Time)
 7. Category (Single line of text)
-8. ActionType (Choice)
-9. Status (Choice)
+8. ActionType (Choice) - choices: Yammer Post, Video, News Post, Change
+9. Status (Choice) - choices: Completed, In Progess, New, Updated
 10. Severity (Single line of text)
 11. CreatedDate (Date and Time)
 12. ModifiedDate (Date and Time)
