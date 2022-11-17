@@ -4,6 +4,8 @@ Are you struggling to keep up with the Service Health Dashboard (Incidents/Advis
 
 By leveraging the Power Platform, we can create a one stop shop solution for the M365 Admin team to stay on top of SHD, Message Center, MS RoadMap, etc.
 
+![M365 Management App](https://github.com/morismm99/PowerApps/blob/main/M365%20Management%20Solution/HomeScreen.png?raw=true)
+
 This solution uses the following:
 
 1. SharePoint Online lists to store SHD, Message Center and RoadMap data (premium data sources like Dataverse or SQL could be used instead)
