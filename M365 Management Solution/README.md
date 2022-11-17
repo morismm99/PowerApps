@@ -16,7 +16,7 @@ This solution uses the following:
 
 ![Architecture Diagram](https://github.com/morismm99/PowerApps/blob/main/M365%20Management%20Solution/Architecture.png?raw=true)
 
-###### License Requirements
+## License Requirements
 
 At least one Power Automate per User license is required for the user configuring this solution. This is because the HTTP premium connector is used in the flows.
 
@@ -26,7 +26,7 @@ Power Bi Pro licenses are required for users to view the embedded Power Bi Dashb
 
 *If Dataverse or SQL are used to store the data, then every user with access to the app would need a Power Apps per User, Power Apps per App or PAYGO standlone licensing.*
 
-###### App Registration
+## App Registration
 
 The first step is creating an Azure App Registration with the necessary permissions. It will be used in two of the flows which use the HTTP Action to do a GET REST API call from the MS GRAPH API. Permissions required for the app registration are ServiceHealth.Read.All (Delegaged/Application) - this is for the Service Health Dashboard; ServiceMessage.Read.all (Delegated/Application) - this for the Message Center.
 
@@ -35,7 +35,7 @@ You will need the following after your App Registration has been created:
 2. Tenant ID
 3. App Secret value - Can be generated from the “Certificates & Secrets” in the App Registration options in AAD.
 
-###### SharePoint Online Lists
+## SharePoint Online Lists
 
 Three SPO lists are needed:
 1. M365 Incidents
@@ -102,7 +102,7 @@ SPO lists custom columns needed:
 10. ModifiedDate (Date and Time)
 11. PublicDisclosureAvailabilityDate (Single line of text)
 
-###### Power Automate Flows
+## Power Automate Flows
 
 **Three core SPO flows are needed**
 1. SHD Graph API – Incidents
@@ -180,13 +180,19 @@ It is known that when there is a major incident, Microsoft will post about it in
 3. Any other additional notification flow or flows that can be triggered via a button in the Power App
 Good to Know flow (would allow Admin team to mark Message Center items as good to know). Message Center Item Assignee notification (would update the assignee anytime a Message Center item is updated/marked as complete)
 
-###### Power BI Reports - Optional
+## Power BI Reports - Optional
 
-With Power BI and the data being stored in SharePoint Online lists, you can easily create custom reports for Incidents, Message Center and Roadmap which can be set to refresh on a schedule
+With Power BI and the data being stored in SharePoint Online lists, you can easily create custom reports for Incidents, Message Center and Roadmap which can be set to refresh on a schedule.
 
-###### M365 Management Canvas App
+*The unmanaged solution does not include these Power Bi templates - I am planning to include those in a future sample release.*
+
+![Power Bi Reports](https://github.com/morismm99/PowerApps/blob/main/M365%20Management%20Solution/PowerBI.png?raw=true)
+
+## M365 Management Canvas App
 
 This is just an example of what the canvas app can look like. You can create an app using colors for your company, different layout, etc.
+
+![Canvas App](https://github.com/morismm99/PowerApps/blob/main/M365%20Management%20Solution/CanvasApp.png?raw=true)
 
 **Tips/tricks and things to consider**
 
