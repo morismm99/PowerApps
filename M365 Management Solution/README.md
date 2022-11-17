@@ -14,7 +14,19 @@ This solution uses the following:
 4. Power Bi reports can be created to analyze this data
 5. The app can be added as a tab in an MS Teams channel as a tab for quick access!
 
-App Registration
+![Architecture Diagram](https://github.com/morismm99/PowerApps/blob/main/M365%20Management%20Solution/Architecture.png?raw=true)
+
+###### License Requirements
+
+At least one Power Automate per User license is required for the user configuring this solution. This is because the HTTP premium connector is used in the flows.
+
+If SharePoint Online or Dataverse for Teams are used as the data source, no additional licensing is needed to use the Power App – E3/E5 would be sufficient for end users of the Power App.
+
+Power Bi Pro licenses are required for users to view the embedded Power Bi Dashboards
+
+*If Dataverse or SQL are used to store the data, then every user with access to the app would need a Power Apps per User, Power Apps per App or PAYGO standlone licensing.*
+
+###### App Registration
 
 The first step is creating an Azure App Registration with the necessary permissions. It will be used in two of the flows which use the HTTP Action to do a GET REST API call from the MS GRAPH API. Permissions required for the app registration are ServiceHealth.Read.All (Delegaged/Application) - this is for the Service Health Dashboard; ServiceMessage.Read.all (Delegated/Application) - this for the Message Center.
 
@@ -23,7 +35,7 @@ You will need the following after your App Registration has been created:
 2. Tenant ID
 3. App Secret value - Can be generated from the “Certificates & Secrets” in the App Registration options in AAD.
 
-SharePoint Online Lists
+###### SharePoint Online Lists
 
 Three SPO lists are needed:
 1. M365 Incidents
@@ -39,7 +51,7 @@ Dataverse and Azure SQL are premium data sources and require additional licensin
 
 SPO lists custom columns needed:
 
-M365 Incidents
+**M365 Incidents**
 
 1. Title (Single line of text)
 2. Service (Single line of text)
@@ -58,7 +70,7 @@ M365 Incidents
 15. Feature (Single line of text)
 16. FeatureGroup (Single line of text)
 
-M365 Message Center
+**M365 Message Center**
 
 1. Title (Single line of text)
 2. Link (Single line of text)
@@ -76,7 +88,7 @@ M365 Message Center
 14. Assignee (Person or Group)
 15. InternalNotes (Multiple Lines of text)
 
-M365 RoadMap:
+**M365 RoadMap**
 
 1. Title (Single line of text)
 2. RoadMapID (Single line of text)
@@ -90,21 +102,21 @@ M365 RoadMap:
 10. ModifiedDate (Date and Time)
 11. PublicDisclosureAvailabilityDate (Single line of text)
 
-Power Automate Flows
+###### Power Automate Flows
 
-Three core SPO flows are needed
+**Three core SPO flows are needed**
 1. SHD Graph API – Incidents
 2. SHD Graph API – Message Center
 3. Query MS Roadmap
 
 These flows use the HTTP Action to query API endpoints. The Incidents and Message Center flows query the GRAPH API using the app registration. The MS Roadmap queries a public API, thus no authentication is needed. All three use a recurrence (scheduled trigger).
 
-Optional flows
+**Optional flows**
 1. Daily M365 Open Incidents Report
 2. Search M365 Incidents in Twitter
 3. Any other additional notification flow or flows that can be triggered via a button in the Power App
 
-SHD Graph API – Incidents flow breakdown
+**SHD Graph API – Incidents flow breakdown**
 
 1. Step 1: Recurrence trigger – can be set to run every hour for example
 2. Step 2: The HTTP Action does a GET to the following URI: https://graph.microsoft.com/v1.0/admin/serviceAnnouncement/issues
@@ -121,7 +133,7 @@ Filter using an ODATA query to look for new incidents via ID
 If these don’t exist a new entry will be created using the Create Item SPO action
 If it exists, the entry will be updated IF the updated dates don’t match, using the Update Item SPO action. A condition will need to be added do check if dates match
 
-SHD Graph API – Message Center flow breakdown
+**SHD Graph API – Message Center flow breakdown**
 
 1. Step 1: Recurrence trigger – can be set to run once a day
 2. Step 2: The HTTP Action does a GET to the following URI: https://graph.microsoft.com/v1.0/admin/serviceAnnouncement/messages
@@ -139,7 +151,7 @@ Filter using an ODATA query to look for new messages via ID
 If these don’t exist a new entry will be created using the Create Item SPO action
 If it exists, the entry will be updated IF the updated dates don’t match, using the Update Item SPO action. A condition will need to be added do check if dates match
 
-Query MS Roadmap flow breakdown
+**Query MS Roadmap flow breakdown**
 
 1. Step 1: Recurrence trigger – can be set to run once a week
 2. Step 2: The HTTP Action does a GET to the following URI: https://roadmap-api.azurewebsites.net/api/features
@@ -155,7 +167,7 @@ Filter using an ODATA query to look for new messages via RoadMapID
 If these don’t exist a new entry will be created using the Create Item SPO action
 If it exists, the entry will be updated IF the updated dates don’t match, using the Update Item SPO action. A condition will need to be added do check if dates match
 
-Additional/Optional flows
+**Additional/Optional flows**
 
 More flows can be created to enhance/improve the solution:
 
@@ -168,34 +180,34 @@ It is known that when there is a major incident, Microsoft will post about it in
 3. Any other additional notification flow or flows that can be triggered via a button in the Power App
 Good to Know flow (would allow Admin team to mark Message Center items as good to know). Message Center Item Assignee notification (would update the assignee anytime a Message Center item is updated/marked as complete)
 
-Power BI Reports - Optional
+###### Power BI Reports - Optional
 
 With Power BI and the data being stored in SharePoint Online lists, you can easily create custom reports for Incidents, Message Center and Roadmap which can be set to refresh on a schedule
 
-M365 Management Canvas App
+###### M365 Management Canvas App
 
 This is just an example of what the canvas app can look like. You can create an app using colors for your company, different layout, etc.
 
-Tips/tricks and things to consider
+**Tips/tricks and things to consider**
 
-If using SPO as the data source for this app, depending on how you decide to filter the data in galleries, keep delegation in mind.
+If using SPO as the data source for this app, depending on how you decide to filter the data in galleries, keep delegation in mind. 
 
-For example, in my sample solution where I use SPO lists to store the data, I am currently using search in my formulas to filter my galleries. Search with SPO list does not support delegation. This means I have to keep my list under 2000 items, or I would need to find a different method to filter if I wanted to continue using Search, or only use functions that support delegation.
+For example, in my sample solution where I use SPO lists to store the data, I am currently using search in my formulas to filter my galleries. Search with SPO list does not support delegation. This means I have to keep my list under 2000 items, or I would need to find a different method to filter if I wanted to continue using Search, or only use functions that support delegation. It is also possible to add the list items to a collection and collect more than 2000 items. There are various examples online on how to accomplish this.
 
 If using SPO lists, create “Archive” flows for the three main lists which can run on a schedule and delete closed/older/released items onto different archive lists which are not tied to the Power App
 
-You can add the canvas app to MS Teams for easy access
+You can add the canvas app to MS Teams for easy access!
 The app can continue to be expanded, adding additional functionality to have a one stop shop M365 management solution.
 
-Importing the M365Managemeent_1_0_0_3.Zip unmanaged solution
+###### Importing the M365Managemeent_1_0_0_4.Zip unmanaged solution
 
 I’d recommend importing this “unmanaged” solution into a dev/test environment where you have the Maker Role, so you can successfully do the import.
 
 Make sure you have the three SPO lists created accordingly as the instructions above
 
-When the solution imports, you will need to set variables. Since this is an unmanaged solution, you will need to go to Solutions > Default Solution > Environment Variables > update each from there, setting values in the “Current value” field for each.
+When the solution imports, you will need to set environment variables. Since this is an unmanaged solution, you will need to go to Solutions > Default Solution > Environment Variables > update each from there, setting values in the “Current value” field for each.
 
-Once you do that, you will be able to enable the flows in the solution, but I would recommend going into edit mode for each one of these so you can see how these are built/setup and make any desired changes. 
+Once variables are set, you will be able to enable the flows in the solution, but I would recommend going into edit mode for each one of these so you can see how these are built/setup and make any desired changes. 
 
 Once the flows have been enabled, last step would be to go into edit mode for the canvas app (Microsoft 365 Administration Demo). While in edit mode, you will need to remove the existing SPO lists and add your site/lists. If you used the same names, every screen/gallery/formula will map correctly.
 
@@ -207,4 +219,4 @@ Once the flows have been enabled, last step would be to go into edit mode for th
 6.	Check all three lists
 7.	Make sure data load and do a save
 
-The app has several screens that are currently not being used, not built out yet. This is where you can make this app your own, remove screens, add new screens/functionality, change colors, sky is the limit. The Incidents/Advisories, Message Center and RoadMap screens are functional and already have various filters set.
+The Incidents/Advisories, Message Center and RoadMap screens are functional and already have various filters set. The Power Bi reports screens are just a place holder if you decide to create Power Bi reports to analyze the data. If you create those, once the reports are published, you can pin pages to a Power Bi Dashboard, and you will then be able to embedded a report page on the Power App.
