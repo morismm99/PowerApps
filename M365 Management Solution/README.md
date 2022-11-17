@@ -205,4 +205,4 @@ Once the flows have been enabled, last step would be to go into edit mode for th
 6.	Check all three lists
 7.	Make sure data load and do a save
 
-The app has several screens that are currently not being used, not built out yet. This is where you can make this app your own, remove screens, add new screens/functionality, change colors, sky is the limit. The Incidents/Advisories, Message Center and RoadMap screens are functional and already have various filters set as you will see.
+The app has several screens that are currently not being used, not built out yet. This is where you can make this app your own, remove screens, add new screens/functionality, change colors, sky is the limit. The Incidents/Advisories, Message Center and RoadMap screens are functional and already have various filters set.
