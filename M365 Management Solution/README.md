@@ -65,7 +65,7 @@ SPO lists custom columns needed:
 10. EndTime (Date and Time)
 11. Twitter (Single line of text)
 12. IsResolved (Single line of text)
-13. HighImpact (Single line of text)
+13. HighImpact (Single line of text) - DEPRECATED - no longer exists in Graph API endpoint - no need to create
 14. Origin (Single line of text)
 15. Feature (Single line of text)
 16. FeatureGroup (Single line of text)
@@ -205,7 +205,9 @@ If using SPO lists, create “Archive” flows for the three main lists which ca
 You can add the canvas app to MS Teams for easy access!
 The app can continue to be expanded, adding additional functionality to have a one stop shop M365 management solution.
 
-###### Importing the M365Managemeent_1_0_0_4.Zip unmanaged solution
+###### Importing the M365Managemeent_1_0_0_5.Zip unmanaged solution
+
+**The 1_0_0_5 version contains flows which have been updated to remove two properties which no longer exist in the Graph API (highImpact for Incidents and expiryDate for Message Center)**
 
 I’d recommend importing this “unmanaged” solution into a dev/test environment where you have the Maker Role, so you can successfully do the import.
 
