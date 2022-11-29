@@ -205,7 +205,7 @@ If using SPO lists, create “Archive” flows for the three main lists which ca
 You can add the canvas app to MS Teams for easy access!
 The app can continue to be expanded, adding additional functionality to have a one stop shop M365 management solution.
 
-###### Importing the M365Managemeent_1_0_0_5.Zip unmanaged solution
+## Importing the M365Managemeent_1_0_0_5.Zip unmanaged solution
 
 **The 1_0_0_5 version contains flows which have been updated to remove two properties which no longer exist in the Graph API (highImpact for Incidents and expiryDate for Message Center)**
 
