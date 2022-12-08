@@ -18,7 +18,7 @@ This solution uses the following:
 
 ## License Requirements
 
-At least one Power Automate per User license is required for the user configuring this solution. This is because the HTTP premium connector is used in the flows.
+At least one Power Automate per User license or Power Automate per Flow is required for this solution. This is because the HTTP premium connector is used in the flows.
 
 If SharePoint Online or Dataverse for Teams are used as the data source, no additional licensing is needed to use the Power App – E3/E5 would be sufficient for end users of the Power App.
 
