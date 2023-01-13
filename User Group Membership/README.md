@@ -13,3 +13,5 @@ This sample canvas app allows you to search for users and then get a selected us
 7.  Click save and then click Import.
 8.	Once the import is complete, open the app and make any desired changes.
 7.	Publish the app and share with other users.
+
+If the Import fails, please download the .msapp file and go into an existing app (edit mode) > click the three dots in the menu and click Open > Browse to the location you saved the .msapp and select it.
