@@ -205,7 +205,7 @@ If using SPO lists, create “Archive” flows for the three main lists which ca
 You can add the canvas app to MS Teams for easy access!
 The app can continue to be expanded, adding additional functionality to have a one stop shop M365 management solution.
 
-## Importing the M365Managemeent_1_0_0_5.Zip unmanaged solution
+## Importing the M365Managemeent_1_0_0_6.Zip unmanaged solution
 
 **The 1_0_0_5 version contains flows which have been updated to remove two properties which no longer exist in the Graph API (highImpact for Incidents and expiryDate for Message Center)**
 
@@ -219,8 +219,7 @@ Once variables are set, you will be able to enable the flows in the solution, bu
 
 Once the flows have been enabled, last step would be to go into edit mode for the canvas app (Microsoft 365 Administration Demo). While in edit mode, you will need to remove the existing SPO lists and add your site/lists. If you used the same names, every screen/gallery/formula will map correctly.
 
-1.	Click View tab
-2.	Data sources
+1.	Click Data tab in left menu
 3.	Remove the three SPO lists > click three dots > remove
 4.	Add data source > choose your SharePoint connection
 5.	Search/find the SPO site where the lists reside in
