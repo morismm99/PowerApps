@@ -97,7 +97,7 @@ SPO lists custom columns needed:
 5. Status (Single line of text)
 6. MoreInfoLink (Single line of text)
 7. PublicRoadMapStatus (Single line of text)
-8. Tags (Multiple lines of text))
+8. Tags (Multiple lines of text)
 9. CreatedDate (Date and Time)
 10. ModifiedDate (Date and Time)
 11. PublicDisclosureAvailabilityDate (Single line of text)
@@ -198,16 +198,16 @@ This is just an example of what the canvas app can look like. You can create an 
 
 If using SPO as the data source for this app, depending on how you decide to filter the data in galleries, keep delegation in mind. 
 
-For example, in my sample solution where I use SPO lists to store the data, I am currently using search in my formulas to filter my galleries. Search with SPO list does not support delegation. This means I have to keep my list under 2000 items, or I would need to find a different method to filter if I wanted to continue using Search, or only use functions that support delegation. It is also possible to add the list items to a collection and collect more than 2000 items. There are various examples online on how to accomplish this.
+For example, in my sample solution where I use SPO lists to store the data, I was original using search in my formulas to filter my galleries. Search with SPO list does not support delegation. This means I had to keep my list under 2000 items. I have updated version 1_0_0_7 to use the StartsWith() fuction which does delegate with SharePoint Online. It is also possible to add the list items to a collection and collect more than 2000 items. There are various examples online on how to accomplish this - here is a great example - https://github.com/JakeGwynn/PowerApps_Collect-Large-SharePoint-List
 
 If using SPO lists, create “Archive” flows for the three main lists which can run on a schedule and delete closed/older/released items onto different archive lists which are not tied to the Power App
 
 You can add the canvas app to MS Teams for easy access!
 The app can continue to be expanded, adding additional functionality to have a one stop shop M365 management solution.
 
-## Importing the M365Managemeent_1_0_0_6.Zip unmanaged solution
+## Importing the M365Managemeent_1_0_0_7.Zip unmanaged solution
 
-**The 1_0_0_5 version contains flows which have been updated to remove two properties which no longer exist in the Graph API (highImpact for Incidents and expiryDate for Message Center)**
+**The 1_0_0_7 version contains flows which have been updated to remove two properties which no longer exist in the Graph API (highImpact for Incidents and expiryDate for Message Center) and Power App has been updated to use StartsWith function instead of Search to avoid delegation issues**
 
 I’d recommend importing this “unmanaged” solution into a dev/test environment where you have the Maker Role, so you can successfully do the import.
 
