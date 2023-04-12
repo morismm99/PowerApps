@@ -198,7 +198,7 @@ This is just an example of what the canvas app can look like. You can create an 
 
 If using SPO as the data source for this app, depending on how you decide to filter the data in galleries, keep delegation in mind. 
 
-For example, in my sample solution where I use SPO lists to store the data, I was original using search in my formulas to filter my galleries. Search with SPO list does not support delegation. This means I had to keep my list under 2000 items. I have updated version 1_0_0_7 to use the StartsWith() fuction which does delegate with SharePoint Online. It is also possible to add the list items to a collection and collect more than 2000 items. There are various examples online on how to accomplish this - here is a great example - https://github.com/JakeGwynn/PowerApps_Collect-Large-SharePoint-List
+For example, in my sample solution where I use SPO lists to store the data, I was originally using search in my formulas to filter my galleries. Search() with SPO list does not support delegation. This means I had to keep my list under 2000 items. I have updated version 1_0_0_7 to use the StartsWith() fuction which does delegate with SharePoint Online. It is also possible to add the list items to a collection and collect more than 2000 items. There are various examples online on how to accomplish this - here is a great example - https://github.com/JakeGwynn/PowerApps_Collect-Large-SharePoint-List
 
 If using SPO lists, create “Archive” flows for the three main lists which can run on a schedule and delete closed/older/released items onto different archive lists which are not tied to the Power App
 
